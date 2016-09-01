@@ -1,0 +1,39 @@
+.input {
+  width: 300px;
+  height: 25px;
+  font-size: 15px;
+  border: 1px solid darkgray;
+  border-radius: 4px;
+  padding: 5px;
+  outline: none;
+  font-family: "Roboto Condensed", serif
+}
+.top-row {
+  width: 1000px;
+  text-align: center;
+}
+.form-container {
+  margin: auto;
+}
+.map-container {
+  width: 1000px;
+  height: 500px;
+  margin-top: 10px;
+}
+.get-button {
+  border: 2px solid darkgray;
+  background: white;
+  font-family: Roboto, cursive;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+  outline: none;
+  user-selection: none;
+}
+.get-button[disabled] {
+  opacity: 0.5;
+  cursor: initial;
+  pointer-events: none;
+}

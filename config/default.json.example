@@ -1,0 +1,11 @@
+{
+  "google_api_key": "YoUR-gOoGLe-apI-KEY",
+  "mist": {
+    "address": "http://localhost:2100",
+    "job": {
+      "jar_path": "/path/to/file",
+      "class_name": "SparkContextClassName",
+      "namespace": "weather_forecast_context"
+    }
+  }
+}
