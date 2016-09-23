@@ -47,7 +47,7 @@ function init() {
           if (status === 'OK') {
             lastDirectionsPoints = {
               points: result.routes[0].overview_path
-                .map((m) => Object({lat: m.lat(), lng: m.lng()})),
+                .map((m) => Object({lat: m.lat().toString(), lng: m.lng().toString()})),
               legs: {
                 distance: result.routes[0].legs[0].distance,
                 duration: result.routes[0].legs[0].duration
@@ -73,11 +73,10 @@ function init() {
     xhr.addEventListener('readystatechange', () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          console.log(JSON.parse(xhr.response));
           const forecast = JSON.parse(xhr.response);
-          weatherMarkers = forecast
+          console.log("success: ", forecast.success);
+          weatherMarkers = forecast.payload.result.parameters
             .map((item, idx) => {
-              if (idx % 5 !== 0) return null;
               return new google.maps.Marker({
                 position: new google.maps.LatLng(item.point.lat, item.point.lng),
                 map: map,
@@ -85,11 +84,11 @@ function init() {
                 icon: 'http://openweathermap.org/img/w/' + (() => {
                   if (item.sun > 50 && item.cloud < 50) {
                     return '01d.png';
-                  } else if (item.sun > 50 && item.cloud > 50) {
+                  } else if (item.sun >= 50 && item.cloud >= 50) {
                     return '02d.png';
                   } else if (item.cloud > 50 && item.sun < 50) {
                     return '03d.png';
-                  } else if (item.sun < 50 && item.rain > 50) {
+                  } else if (item.sun <= 50 && item.rain >= 50) {
                     return '09d.png';
                   } else if (item.sun > 50 && item.rain > 50) {
                     return '10d.png';
@@ -100,6 +99,7 @@ function init() {
               });
             })
             .filter((m) => m);
+            
         }
       }
     });
