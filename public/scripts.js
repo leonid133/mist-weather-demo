@@ -98,8 +98,7 @@ function init() {
                 })()
               });
             })
-            .filter((m) => m);
-            
+            .filter((m) => m); 
         }
       }
     });
